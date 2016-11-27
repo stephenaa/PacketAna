@@ -36,6 +36,7 @@ void callback(u_char *useless,const struct pcap_pkthdr* pkthdr,const u_char*
 
   printf("\nPacket number [%d], length of this packet is: %d\n", count++, pkthdr->len);
   PacketAnalyzer::getInstance()->getObject(pkthdr, packet);
+  
 }
 
 

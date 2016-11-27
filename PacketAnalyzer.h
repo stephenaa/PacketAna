@@ -13,10 +13,19 @@
 
 #ifndef PACKETANALYZER_H
 #define PACKETANALYZER_H
+
 #include <sys/types.h>
 
 #include "PacketAnalyzer.h"
 #include "PacketObject.h"
+
+enum class PACKET_TYPES : unsigned int {
+    IPV4 = 0x0800,
+    ARP = 0x0806,            
+    IPV6 = 0x86dd,
+};
+
+
 
 class PacketAnalyzer {
 public:
