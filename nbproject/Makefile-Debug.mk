@@ -21,8 +21,8 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=GNU-MacOSX
-CND_DLIB_EXT=dylib
+CND_PLATFORM=GNU-Linux
+CND_DLIB_EXT=so
 CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/IPv4Packet.o \
 	${OBJECTDIR}/PacketAnalyzer.o \
 	${OBJECTDIR}/PacketObject.o \
 	${OBJECTDIR}/main.o
@@ -63,6 +64,11 @@ LDLIBSOPTIONS=-lpcap
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/packetana: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/packetana ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/IPv4Packet.o: IPv4Packet.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/IPv4Packet.o IPv4Packet.cpp
 
 ${OBJECTDIR}/PacketAnalyzer.o: PacketAnalyzer.cpp 
 	${MKDIR} -p ${OBJECTDIR}
