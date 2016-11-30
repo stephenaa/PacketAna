@@ -5,18 +5,17 @@
  */
 
 /* 
- * File:   PacketObject.cpp
- * Author: stephenaaskov
+ * File:   IPv4Packet.cpp
+ * Author: saaskov
  * 
- * Created on 27. november 2016, 22:13
+ * Created on November 30, 2016, 1:43 PM
  */
 
-#include "PacketObject.h"
+#include "IPv4Packet.h"
 
-PacketObject::PacketObject() {
+IPv4Packet::IPv4Packet() : m_type(PACKET_TYPES::IPV4) {
 }
 
-
-PacketObject::~PacketObject() {
+IPv4Packet::~IPv4Packet() {
 }
 

@@ -17,7 +17,7 @@
 class PacketObject {
 public:
     PacketObject();
-    PacketObject(const PacketObject& orig);
+    PacketObject(const PacketObject& orig) = delete;
     virtual ~PacketObject();
 private:
 

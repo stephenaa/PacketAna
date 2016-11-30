@@ -15,7 +15,7 @@
 #define PACKETANALYZER_H
 
 #include <sys/types.h>
-
+#include <memory>
 #include "PacketAnalyzer.h"
 #include "PacketObject.h"
 
@@ -31,7 +31,7 @@ class PacketAnalyzer {
 public:
     PacketAnalyzer(const PacketAnalyzer& orig) = delete;
     static PacketAnalyzer* getInstance();
-    PacketObject* getObject(const struct pcap_pkthdr* pkthdr, const u_char* packet);
+    std::unique_ptr<PacketObject> getObject(const struct pcap_pkthdr* pkthdr, const u_char* packet);
     
 private:
     static PacketAnalyzer* m_instance;
