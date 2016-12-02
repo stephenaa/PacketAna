@@ -12,8 +12,12 @@
  */
 
 #include "IPv4Packet.h"
+#include <arpa/inet.h>
 
-IPv4Packet::IPv4Packet() : m_type(PACKET_TYPES::IPV4) {
+IPv4Packet::IPv4Packet(const u_char* packet, uint32_t len) : 
+    PacketObject(packet, len),m_type(PACKET_TYPES::IPV4)
+{
+    std::cout <<  "IPv4. " << std::hex << ntohs(m_eth->ether_type)  << std::dec << std::endl;
 }
 
 IPv4Packet::~IPv4Packet() {

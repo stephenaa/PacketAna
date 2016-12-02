@@ -20,6 +20,13 @@
 #include "IPv4Packet.h"
 #include <iostream>
 
+/*
+std::ostream& operator<<(std::ostream& out, const PacketObject& r)
+{
+    return out<< r.toString();
+}
+
+*/
 
 static std::string getPacketTypeName(PACKET_TYPES type)
 {
@@ -62,20 +69,27 @@ std::unique_ptr<PacketObject> PacketAnalyzer::getObject(const struct pcap_pkthdr
         ether_header* eth = (ether_header*) packet;
         std::cout << "Ethernet frame of type ox" << std::hex << ntohs(eth->ether_type) << std::dec << "  ";
 
-
         switch ((PACKET_TYPES) ntohs(eth->ether_type)) {
             case PACKET_TYPES::IPV6:
                 std::cout << "IPv6 packet" << std::endl;
                 break;
+                
             case PACKET_TYPES::IPV4:
+            {
                 std::cout << "IPv4 packet" << std::endl;
-                pkt.reset(new IPv4Packet());
+                IPv4Packet *pkt2 = new IPv4Packet(packet, pkthdr->caplen);
+                std::cout << "Packet: " << pkt2->toString() << std::endl;
+                //pkt.reset(new IPv4Packet(packet, pkthdr->caplen));                
+                //std::cout << "Packet: " << pkt->toString() << std::endl;
                 break;
+            }
+            
             case PACKET_TYPES::ARP:
                 std::cout << "ARP packet" << std::endl;
                 break;
 
-
+            default:
+                std::cout << std::endl;
         }
     }
     return pkt;

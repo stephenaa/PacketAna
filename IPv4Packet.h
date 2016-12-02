@@ -20,13 +20,15 @@
 
 
 class IPv4Packet : public PacketObject {
+    
 public:
-    IPv4Packet();
+    IPv4Packet(const u_char* packet, uint32_t len);
     virtual ~IPv4Packet();
     PACKET_TYPES getType() const { return m_type; }
-    
+    virtual std::string toString() const { return std::string("IPv4Packet"); }
 private:
     PACKET_TYPES m_type;
+
 };
 
 #endif /* IPV4PACKET_H */

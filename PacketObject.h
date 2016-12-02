@@ -14,14 +14,25 @@
 #ifndef PACKETOBJECT_H
 #define PACKETOBJECT_H
 
+#include <iostream>
+#include <memory>
+#include <netinet/if_ether.h>
+
 class PacketObject {
+
 public:
-    PacketObject();
+    PacketObject(const u_char* packet, uint32_t len);
     PacketObject(const PacketObject& orig) = delete;
     virtual ~PacketObject();
-private:
+    virtual std::string toString() const { return std::string("PacketObject"); }
 
+protected:
+    std::unique_ptr<u_char> m_packet;
+    //const u_char* m_packet;
+    const ether_header* m_eth;
 };
+
+
 
 #endif /* PACKETOBJECT_H */
 

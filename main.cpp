@@ -81,7 +81,7 @@ int main(int argc, char** argv) {
     }
     else 
     {
-        pcap_loop(pcap, 10, callback, NULL);
+        pcap_loop(pcap, -1, callback, NULL);
     }
     
     return 0;
