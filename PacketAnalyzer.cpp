@@ -77,10 +77,8 @@ std::unique_ptr<PacketObject> PacketAnalyzer::getObject(const struct pcap_pkthdr
             case PACKET_TYPES::IPV4:
             {
                 std::cout << "IPv4 packet" << std::endl;
-                IPv4Packet *pkt2 = new IPv4Packet(packet, pkthdr->caplen);
-                std::cout << "Packet: " << pkt2->toString() << std::endl;
-                //pkt.reset(new IPv4Packet(packet, pkthdr->caplen));                
-                //std::cout << "Packet: " << pkt->toString() << std::endl;
+                pkt.reset(new IPv4Packet(packet, pkthdr->caplen));                
+                std::cout << "Packet: " << pkt->toString() << std::endl;
                 break;
             }
             
